@@ -16,10 +16,24 @@ public class ToDoHardCodedService {
 		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Learn Sprint MVC", new Date(), false ));
 		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Learn Kubernetes", new Date(), false ));
 		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Visit Austin Texas", new Date(), false ));
+		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Finish React & Spring", new Date(), false ));
+		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Learn Docker By Mumshad", new Date(), false ));
+		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Containerize Entire Application", new Date(), false ));
 	}
 	
 	public List<ToDo> findAll() {
 		return toDos;
+	}
+	
+	public ToDo save(ToDo todo) {
+		if(todo.getId() == -1 || todo.getId() == 0) {
+			todo.setId(++idCounter);
+			toDos.add(todo);
+		} else {
+			deleteByID(todo.getId());
+			toDos.add(todo);
+		}
+		return todo;
 	}
 	
 	public ToDo deleteByID(long id) {
@@ -34,7 +48,7 @@ public class ToDoHardCodedService {
 		return null;
 	}
 
-	private ToDo findById(long id) {
+	public ToDo findById(long id) {
 		for(ToDo todo: toDos) {
 			if(todo.getId() == id) {
 				return todo;
