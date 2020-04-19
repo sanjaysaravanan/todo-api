@@ -13,12 +13,7 @@ public class ToDoHardCodedService {
 	private static int idCounter = 0;
 	
 	static {
-		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Learn Sprint MVC", new Date(), false ));
-		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Learn Kubernetes", new Date(), false ));
-		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Visit Austin Texas", new Date(), false ));
-		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Finish React & Spring", new Date(), false ));
-		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Learn Docker By Mumshad", new Date(), false ));
-		toDos.add(new ToDo(++idCounter, "SanjaySaravanan", "Containerize Entire Application", new Date(), false ));
+		toDos.add(new ToDo("SanjaySaravanan", "Learn Sprint MVC", new Date(), false ));
 	}
 	
 	public List<ToDo> findAll() {
@@ -36,7 +31,7 @@ public class ToDoHardCodedService {
 		return todo;
 	}
 	
-	public ToDo deleteByID(long id) {
+	public ToDo deleteByID(int id) {
 		ToDo todo = findById(id);
 		
 		if(todo == null) return null;
@@ -48,7 +43,7 @@ public class ToDoHardCodedService {
 		return null;
 	}
 
-	public ToDo findById(long id) {
+	public ToDo findById(int id) {
 		for(ToDo todo: toDos) {
 			if(todo.getId() == id) {
 				return todo;

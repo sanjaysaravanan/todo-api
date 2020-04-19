@@ -2,16 +2,48 @@ package com.example.demo.todo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@Entity
+@ApiModel(description = "Details about the ToDo")
+@Table(name = "todo")
 public class ToDo {
-	private long id;
+	@ApiModelProperty(notes = "Unique ID for the ToDo")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private int id;
+	
+	@ApiModelProperty(notes = "Unique username for the ToDo")
+	@Column(name = "username")
 	private String username;
+	
+	@ApiModelProperty(notes = "Description for the ToDo")
+	@Column(name = "description")
 	private String description;
+	
+	@ApiModelProperty(notes = "Target date for the ToDo")
+	@Column(name = "target_date")
 	private Date targetDate;
+	
+	@ApiModelProperty(notes = "Is Todo completed... ?")
+	@Column(name = "is_done")
 	private boolean isDone;
+
+	public ToDo() {
 		
-	public ToDo(long id, String username, String description, Date targetDate, boolean isDone) {
+	}
+	
+	public ToDo(String username, String description, Date targetDate, boolean isDone) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.description = description;
 		this.targetDate = targetDate;
@@ -19,10 +51,10 @@ public class ToDo {
 	}
 
 	// Getters and Setters
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getUsername() {
